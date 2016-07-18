@@ -1,32 +1,33 @@
 import React from 'react';
-
-// class component
 class App extends React.Component {
   constructor(){
-    super();  // gives us our context for 'this' wihtin our component
-    this.state = {
-      txt: 'this is the state txt',
-      cat: 0
-    }
+    super();
+    this.state = { txt: '' }
+    this.update = this.update.bind(this)
   }
-
   update(e){
     this.setState({txt: e.target.value});
   }
-
-
   render(){
     return (
     <div>
-      <input type='text'
-        onChange={this.update.bind(this)} />
-      <h1>{this.state.txt}</h1>
+      <Widget txt={this.state.txt} update={this.update} />
+      <Widget txt={this.state.txt} update={this.update} />
+      <Widget txt={this.state.txt} update={this.update} />
+      <Widget txt={this.state.txt} update={this.update} />
     </div>
     );
   }
 }
 
-// stateless function component
-//const App = () => <h1>Hello Eggheads</h1>
+const Widget = (props) => {
+  return (
+    <div>
+      <input type='text'
+        onChange={props.update} />
+      <h1>{props.txt}</h1>
+    </div>
+    );
+}
 
-export default App;
+export default App
